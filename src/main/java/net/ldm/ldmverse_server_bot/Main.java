@@ -1,11 +1,8 @@
 package net.ldm.ldmverse_server_bot;
 
-import net.dv8tion.jda.api.JDA;
-import net.dv8tion.jda.api.JDABuilder;
-import net.dv8tion.jda.api.entities.Activity;
-import net.dv8tion.jda.api.utils.cache.CacheFlag;
+import net.ldm.ldmverse_server_bot.bot.BotHandler;
 import net.ldm.ldmverse_server_bot.file.FileUtils;
-import net.ldm.ldmverse_server_bot.json.BotConfig;
+import net.ldm.ldmverse_server_bot.bot.json.BotConfig;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.LoggerContext;
 
@@ -17,6 +14,8 @@ public class Main {
     private static final Logger LOG = LoggerContext.getContext().getLogger(Main.class);
 
     public static void main(String[] args) {
+        LOG.info("Starting application");
+
         try {
             BOT_CONFIG = FileUtils.readJson("bot.json", BotConfig.class);
         } catch (Exception e) {
@@ -24,26 +23,22 @@ public class Main {
             System.out.print("Bot token? ");
             String token = IN.nextLine();
 
-            if (!FileUtils.writeJson("bot.json", new BotConfig(token))) {
-                System.out.println("Something went wrong.");
+            BOT_CONFIG = new BotConfig(token);
+
+            if (!FileUtils.writeJson("bot.json", BOT_CONFIG)) {
+                LOG.fatal("Something went wrong while writing the bot config to bot.json");
                 System.exit(-1);
             }
-            System.exit(0);
+            LOG.info("Bot config created, file saved");
         }
 
         if (BOT_CONFIG.token == null || BOT_CONFIG.token.isEmpty()) {
+            LOG.error("Bot token is missing or corrupt.");
             System.out.println("Your bot token is missing or corrupt. Please paste it below.");
             BOT_CONFIG.token = IN.nextLine();
             FileUtils.writeJson("bot.json", BOT_CONFIG);
         }
 
-        //JDA bot = startBot();
-    }
-
-    private static JDA startBot() {
-        return JDABuilder.createDefault(BOT_CONFIG.token)
-                .disableCache(CacheFlag.MEMBER_OVERRIDES, CacheFlag.VOICE_STATE)
-                .setActivity(Activity.watching("Java > Python"))
-                .build();
+        BotHandler.start();
     }
 }
