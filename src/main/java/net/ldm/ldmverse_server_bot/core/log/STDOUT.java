@@ -5,8 +5,8 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.OutputStream;
 
-public class LogOutputStream extends OutputStream {
-    private static final Logger logger = LogManager.getLogger(LogOutputStream.class);
+public class STDOUT extends OutputStream {
+    private static final Logger logger = LogManager.getLogger(STDOUT.class);
 
     private final StringBuilder builder = new StringBuilder();
 

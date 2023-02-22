@@ -4,7 +4,7 @@ import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
-import net.ldm.ldmverse_server_bot.core.log.LogOutputStream;
+import net.ldm.ldmverse_server_bot.core.log.STDOUT;
 import net.ldm.ldmverse_server_bot.file.FileUtils;
 import net.ldm.ldmverse_server_bot.json.BotConfig;
 import org.apache.logging.log4j.Logger;
@@ -39,7 +39,7 @@ public class Main {
             FileUtils.writeJson("bot.json", BOT_CONFIG);
         }
 
-        System.setOut(new PrintStream(new LogOutputStream(), true));
+        System.setOut(new PrintStream(new STDOUT(), true));
 
         LOG.info("Hello, world!");
         System.out.println("asdasd");
