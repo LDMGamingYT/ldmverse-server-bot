@@ -1,6 +1,5 @@
 package net.ldm.ldmverse_server_bot.file;
 
-import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import net.ldm.ldmverse_server_bot.json.BotConfig;
@@ -29,15 +28,10 @@ public class FileUtils {
         return new GsonBuilder().create().fromJson(read(path), type);
     }
 
-    public static boolean create(String fileName) {
-        try {
-            File file = new File(fileName);
-            System.out.println("File created: " + file.getName());
-            return file.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return false;
+    public static boolean create(String fileName) throws IOException {
+        File file = new File(fileName);
+        System.out.println("File created: " + file.getName());
+        return file.createNewFile();
     }
 
     public static boolean write(String fileName, String content) {
@@ -51,8 +45,12 @@ public class FileUtils {
         }
     }
 
-    public static boolean writeJson(BotConfig content) {
-        create("bot.json");
-        write("bot.json", new GsonBuilder().create().toJson(content));
+    public static boolean writeJson(String fileName, BotConfig content) {
+        try {
+            if (!create(fileName)) System.out.println();
+            return write(fileName, new GsonBuilder().create().toJson(content));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

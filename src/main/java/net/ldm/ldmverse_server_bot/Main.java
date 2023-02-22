@@ -6,6 +6,7 @@ import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
 import net.ldm.ldmverse_server_bot.file.FileUtils;
 import net.ldm.ldmverse_server_bot.json.BotConfig;
+import org.slf4j.LoggerFactory;
 
 import java.util.Scanner;
 
@@ -16,11 +17,14 @@ public class Main {
         try {
             BOT_CONFIG = FileUtils.readJson("bot.json", BotConfig.class);
         } catch (Exception e) {
-            genConfig();
+            if (!genConfig()) {
+                System.out.println("Something went wrong.");
+                System.exit(-1);
+            }
             System.exit(0);
         }
 
-        System.out.println(BOT_CONFIG.token);
+        LoggerFactory.getLogger("main/bot").info("asd");
 
         //JDA bot = startBot();
     }
@@ -32,12 +36,12 @@ public class Main {
                 .build();
     }
 
-    private static void genConfig() {
+    private static boolean genConfig() {
         Scanner in = new Scanner(System.in);
         System.out.println("It seems you don't have your config setup. Let's do that!");
         System.out.print("Bot token? ");
         String token = in.nextLine();
 
-
+        return FileUtils.writeJson("bot.json", new BotConfig(token));
     }
 }
