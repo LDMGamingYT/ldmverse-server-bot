@@ -2,7 +2,8 @@ package net.ldm.ldmverse_server_bot.file;
 
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
-import net.ldm.ldmverse_server_bot.json.BotConfig;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.LoggerContext;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,26 +12,30 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class FileUtils {
+    private static final Logger LOG = LoggerContext.getContext().getLogger(FileUtils.class);
+
     public static String read(String path) throws FileNotFoundException {
+        LOG.info("Reading file: {}", path);
         StringBuilder content = new StringBuilder();
         try (Scanner scanner = new Scanner(new File(path))) {
             while (scanner.hasNextLine()) {
                 content.append(scanner.nextLine());
             }
         } catch (FileNotFoundException e) {
+            LOG.error("Failed to read {}", e.getMessage());
             throw new RuntimeException(e);
         }
         if (content.isEmpty()) throw new FileNotFoundException(path);
         return content.toString();
     }
 
-    public static <T>T readJson(String path, Class<T> type) throws FileNotFoundException, JsonSyntaxException {
+    public static <T> T readJson(String path, Class<T> type) throws FileNotFoundException, JsonSyntaxException {
         return new GsonBuilder().create().fromJson(read(path), type);
     }
 
     public static boolean create(String fileName) throws IOException {
         File file = new File(fileName);
-        System.out.println("File created: " + file.getName());
+        LOG.info("File created: {}", file.getName());
         return file.createNewFile();
     }
 
@@ -39,8 +44,10 @@ public class FileUtils {
             FileWriter writer = new FileWriter(fileName);
             writer.write(content);
             writer.close();
+            LOG.info("Writen to file: {}", fileName);
             return true;
         } catch (IOException e) {
+            LOG.error("An error has occurred: {}", e.getMessage());
             return false;
         }
     }
