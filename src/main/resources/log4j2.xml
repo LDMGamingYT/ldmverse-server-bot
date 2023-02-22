@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn">
+    <Appenders>
+        <Console name="LogToConsole" target="SYSTEM_OUT">
+            <PatternLayout disableAnsi="false" pattern="%style{[%d{HH:mm:ss}]}{bright_blue} %highlight{[%t/%level]}{FATAL=red, ERROR=red, WARN=yellow, INFO=green, DEBUG=green, TRACE=blue} %style{(%c{0})}{cyan} %msg%n"/>
+        </Console>
+        <File name="LogToLatestFile" fileName="logs/latest.log" append="false">
+            <PatternLayout pattern="[%d{HH:mm:ss}] [%t/%level] (%c{1}) %msg%n"/>
+        </File>
+        <File name="LogToAllFile" fileName="logs/history.log" append="true">
+            <PatternLayout pattern="[%d{HH:mm:ss}] [%t/%level] (%c{1}) %msg%n"/>
+        </File>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="LogToConsole"/>
+            <AppenderRef ref="LogToLatestFile"/>
+            <AppenderRef ref="LogToAllFile"/>
+        </Root>
+    </Loggers>
+</Configuration>
