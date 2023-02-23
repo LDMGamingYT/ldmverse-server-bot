@@ -20,7 +20,7 @@ public class BotHandler {
                 .disableCache(CacheFlag.MEMBER_OVERRIDES, CacheFlag.VOICE_STATE)
                 .disableIntents(GatewayIntent.GUILD_PRESENCES, GatewayIntent.GUILD_MESSAGE_TYPING)
                 .enableIntents(GatewayIntent.MESSAGE_CONTENT)
-                .setActivity(Activity.watching("The LDMVerse!"))
+                .setActivity(Activity.playing("in development!"))
                 .setLargeThreshold(50)
                 .build();
     }
