@@ -1,4 +1,4 @@
-package net.ldm.ldmverse_server_bot.bot;
+package net.ldm.ldmverse_server_bot.bot.init;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -7,6 +7,7 @@ import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.interactions.commands.DefaultMemberPermissions;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
+import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
 import net.ldm.ldmverse_server_bot.bot.event.MessageListener;
@@ -27,7 +28,7 @@ public class BotHandler {
                 .enableIntents(GatewayIntent.MESSAGE_CONTENT)
                 .setActivity(Activity.playing("in development!"))
                 .setLargeThreshold(50)
-                .addEventListeners(new MessageListener())
+                .addEventListeners(new MessageListener(), new SlashCommands())
                 .build();
     }
 
@@ -38,19 +39,20 @@ public class BotHandler {
                 Commands.slash("suggestion", "Set the status of a suggestion.")
                         .setDefaultPermissions(DefaultMemberPermissions.enabledFor(Permission.ADMINISTRATOR))
                         .setGuildOnly(true)
-                        //.addOption() // TODO: 2023-02-23 Use the resources below to finish this 💀
-                        /* https://github.com/DV8FromTheWorld/JDA
-                         * https://jda.wiki/using-jda/interactions/#slash-commands
-                         */
+                        .addOptions(new OptionData(OptionType.STRING, "status", "The status of the suggestion", true)
+                                .addChoice("approve", "approve")
+                                .addChoice("deny", "deny")
+                                .addChoice("consider", "consider")
+                                .addChoice("implement", "implement")
+                                .addChoice("pending approval", "pending approval"))
                 // TODO: 2023-02-23 Add commands from 'Sapphire' bot 
         ).queue();
-        bot.addEventListener(new SlashCommands());
         LOG.info("Registered {} commands", bot.retrieveCommands().complete().size());
     }
 
     public static void start() {
+        //new BotRegistry().initialize();
         JDA bot = create();
         registerCommands(bot);
-        bot
     }
 }

@@ -1,6 +1,6 @@
 package net.ldm.ldmverse_server_bot;
 
-import net.ldm.ldmverse_server_bot.bot.BotHandler;
+import net.ldm.ldmverse_server_bot.bot.init.BotHandler;
 import net.ldm.ldmverse_server_bot.bot.json.BotConfig;
 import net.ldm.ldmverse_server_bot.file.FileUtils;
 import org.apache.logging.log4j.Logger;
@@ -38,8 +38,6 @@ public class Main {
             BOT_CONFIG.token = IN.nextLine();
             FileUtils.writeJson("bot.json", BOT_CONFIG);
         }
-
-
 
         BotHandler.start();
     }
