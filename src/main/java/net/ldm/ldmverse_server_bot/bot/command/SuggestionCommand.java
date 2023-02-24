@@ -48,4 +48,12 @@ public class SuggestionCommand extends Command {
             }
         }
     }
+
+    @Override
+    protected void sendSimpleEmbed(SlashCommandInteractionEvent event, String title, String description, int color,
+                                   String thumbnailUrl, String author, String authorIconUrl, String footer) {
+        super.sendSimpleEmbed(event, title, description, color, thumbnailUrl, author, authorIconUrl, footer);
+        //LOG.info(event.getChannel().asThreadChannel().getAppliedTags().add());
+        // TODO: 2023-02-24 Automatically add forum tag
+    }
 }
