@@ -44,7 +44,9 @@ public class BotHandler {
                                 .addChoice("approve", "approve")
                                 .addChoice("deny", "deny")
                                 .addChoice("consider", "consider")
-                                .addChoice("implement", "implement"))
+                                .addChoice("implement", "implement")),
+                Commands.slash("setlevel", "Sets a user's level")
+                        .addOption(OptionType.INTEGER, "level", "The new level", true)
                 // TODO: 2023-02-23 Add commands from 'Sapphire' bot
         ).queue();
         LOG.info("Registered {} commands", bot.retrieveCommands().complete().size());

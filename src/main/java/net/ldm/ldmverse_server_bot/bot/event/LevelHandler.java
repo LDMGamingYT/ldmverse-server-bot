@@ -16,18 +16,14 @@ public class LevelHandler {
     public static int getLevelOf(String userId) {
         Map<String, Integer> levels;
         try {
-            levels = new GsonBuilder().create().fromJson(FileUtils.read(FILE_NAME), new TypeToken<Map<String, Integer>>() {
-            });
-        } catch (FileNotFoundException e) {
-            LOG.warn("{} not found. Creating file", FILE_NAME);
-        }
-        try {
-            levels = new GsonBuilder().create().fromJson(FileUtils.read(FILE_NAME), new TypeToken<Map<String, Integer>>() {
-            });
+            levels = new GsonBuilder().create().fromJson(FileUtils.read(FILE_NAME), new TypeToken<>() {});
+            if (levels == null) return -1;
         } catch (FileNotFoundException e) {
             LOG.error("Something went wrong while retrieving {}", FILE_NAME);
-            return 0;
+            throw new RuntimeException(e);
         }
+
+        if (levels.get(userId) == null) return -1;
         return levels.get(userId);
     }
 }

@@ -1,6 +1,7 @@
 package net.ldm.ldmverse_server_bot.bot.init;
 
 import net.ldm.ldmverse_server_bot.bot.command.PingCommand;
+import net.ldm.ldmverse_server_bot.bot.command.SetLevelCommand;
 import net.ldm.ldmverse_server_bot.bot.command.SuggestionCommand;
 import net.ldm.ldmverse_server_bot.registry.Registries;
 import net.ldm.ldmverse_server_bot.registry.Registry;
@@ -13,5 +14,6 @@ public class BotRegistry {
         LOG.info("Registering items");
         Registry.register(Registries.COMMAND, new PingCommand());
         Registry.register(Registries.COMMAND, new SuggestionCommand());
+        Registry.register(Registries.COMMAND, new SetLevelCommand());
     }
 }

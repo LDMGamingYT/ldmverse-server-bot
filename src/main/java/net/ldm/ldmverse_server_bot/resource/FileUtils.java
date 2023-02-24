@@ -60,4 +60,9 @@ public class FileUtils {
             throw new RuntimeException(e);
         }
     }
+
+    public static void createIfAbsent(String fileName) throws IOException {
+        create(fileName);
+        if (fileName.endsWith(".json")) write(fileName, "{}");
+    }
 }
