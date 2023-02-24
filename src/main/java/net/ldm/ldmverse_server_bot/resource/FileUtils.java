@@ -52,7 +52,7 @@ public class FileUtils {
         }
     }
 
-    public static boolean writeJson(String fileName, Object content) {
+    public static boolean saveJson(String fileName, Object content) {
         try {
             if (!create(fileName)) System.out.println();
             return write(fileName, new GsonBuilder().create().toJson(content));

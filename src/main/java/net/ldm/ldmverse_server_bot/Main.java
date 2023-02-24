@@ -25,7 +25,7 @@ public class Main {
 
             BOT_CONFIG = new BotConfig(token);
 
-            if (!FileUtils.writeJson("bot.json", BOT_CONFIG)) {
+            if (!FileUtils.saveJson("bot.json", BOT_CONFIG)) {
                 LOG.fatal("Something went wrong while writing the bot config to bot.json");
                 System.exit(-1);
             }
@@ -36,7 +36,7 @@ public class Main {
             LOG.error("Bot token is missing or corrupt.");
             System.out.println("Your bot token is missing or corrupt. Please paste it below.");
             BOT_CONFIG.token = IN.nextLine();
-            FileUtils.writeJson("bot.json", BOT_CONFIG);
+            FileUtils.saveJson("bot.json", BOT_CONFIG);
         }
 
         BotHandler.start();
