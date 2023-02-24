@@ -19,6 +19,7 @@ import static net.ldm.ldmverse_server_bot.Main.BOT_CONFIG;
 
 public class BotHandler {
     private static final Logger LOG = LoggerContext.getContext().getLogger(BotHandler.class);
+    public static final String FORUM_ID = "1078078469377884220";
 
     private static JDA create() {
         LOG.info("Starting bot!");
@@ -42,9 +43,8 @@ public class BotHandler {
                                 .addChoice("approve", "approve")
                                 .addChoice("deny", "deny")
                                 .addChoice("consider", "consider")
-                                .addChoice("implement", "implement")
-                                .addChoice("pending approval", "pending approval"))
-                // TODO: 2023-02-23 Add commands from 'Sapphire' bot 
+                                .addChoice("implement", "implement"))
+                // TODO: 2023-02-23 Add commands from 'Sapphire' bot
         ).queue();
         LOG.info("Registered {} commands", bot.retrieveCommands().complete().size());
     }

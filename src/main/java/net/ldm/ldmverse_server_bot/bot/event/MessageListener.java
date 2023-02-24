@@ -9,11 +9,10 @@ import org.apache.logging.log4j.core.LoggerContext;
 
 public class MessageListener extends ListenerAdapter {
     private static final Logger LOG = LoggerContext.getContext().getLogger(BotHandler.class);
-    private static final String FORUM_ID = "1078078469377884220";
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
-        if (!(event.getChannel() instanceof ThreadChannel) || !event.getChannel().asThreadChannel().getParentChannel().getId().equals(FORUM_ID))
+        if (!(event.getChannel() instanceof ThreadChannel) || !event.getChannel().asThreadChannel().getParentChannel().getId().equals(BotHandler.FORUM_ID))
             return;
         LOG.info("Message sent in registered forum");
         ThreadChannel channel = event.getChannel().asThreadChannel();
