@@ -18,7 +18,6 @@ public class SuggestionCommand extends Command {
     public void execute(SlashCommandInteractionEvent event) {
         String status = Objects.requireNonNull(event.getOption("status")).getAsString();
         if (!event.getChannelType().isThread() || !event.getChannel().asThreadChannel().getParentChannel().getId().equals(BotHandler.FORUM_ID)) {
-            LOG.warn("@{} executed /suggestion in a disallowed channel (#{})", event.getUser().getName(), event.getChannel().getName());
             event.reply(":warning: You cannot use this command here!").setEphemeral(true).queue();
             return;
         }
@@ -49,13 +48,5 @@ public class SuggestionCommand extends Command {
                 event.reply(":warning: Invalid status!").setEphemeral(true).queue();
             }
         }
-    }
-
-    @Override
-    protected void sendSimpleEmbed(SlashCommandInteractionEvent event, String title, String description, int color,
-                                   String thumbnailUrl, String author, String authorIconUrl, String footer) {
-        super.sendSimpleEmbed(event, title, description, color, thumbnailUrl, author, authorIconUrl, footer);
-        //LOG.info(event.getChannel().asThreadChannel().getAppliedTags().add());
-        // TODO: 2023-02-24 Automatically add forum tag
     }
 }
