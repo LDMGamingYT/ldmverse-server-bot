@@ -12,6 +12,7 @@ public class MessageListener extends ListenerAdapter {
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
+        if (event.getAuthor().equals(BotHandler.getBot().getSelfUser())) return;
         if (!(event.getChannel() instanceof ThreadChannel) || !event.getChannel().asThreadChannel().getParentChannel().getId().equals(BotHandler.FORUM_ID))
             return;
         LOG.info("Message sent in registered forum");
