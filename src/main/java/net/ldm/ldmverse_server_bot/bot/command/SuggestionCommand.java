@@ -21,6 +21,8 @@ public class SuggestionCommand extends Command {
             event.reply(":warning: You cannot use this command here!").setEphemeral(true).queue();
             return;
         }
+
+        // TODO: 2023-02-24 Move all assets (images) to GitHub, instead of Imgur
         switch (status) {
             case "approve" -> sendSimpleEmbed(event, "This suggestion has been approved!",
                     "Thanks for sharing your opinion! Your suggestion has been queued up for development!",
