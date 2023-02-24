@@ -20,6 +20,7 @@ import static net.ldm.ldmverse_server_bot.Main.BOT_CONFIG;
 public class BotHandler {
     private static final Logger LOG = LoggerContext.getContext().getLogger(BotHandler.class);
     public static final String FORUM_ID = "1078078469377884220";
+    private static JDA bot;
 
     private static JDA create() {
         LOG.info("Starting bot!");
@@ -51,7 +52,11 @@ public class BotHandler {
 
     public static void start() {
         new BotRegistry().initialize();
-        JDA bot = create();
+        bot = create();
         registerCommands(bot);
+    }
+
+    public static JDA getBot() {
+        return bot;
     }
 }
