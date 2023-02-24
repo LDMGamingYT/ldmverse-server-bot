@@ -15,19 +15,14 @@ public class SlashCommands extends ListenerAdapter {
 
     @Override
     public void onSlashCommandInteraction(@NotNull SlashCommandInteractionEvent event) {
-        if (Registry.REGISTRY_MAP.isEmpty() || Registry.REGISTRY_MAP.get(Registries.COMMAND).isEmpty()) {
+        if (Registry.isTypeEmpty(Registries.COMMAND)) {
             LOG.warn("Command registry is empty, cannot run/find commands");
             return;
         }
-        for (RegistryObject object: Registry.REGISTRY_MAP.get(Registries.COMMAND)) {
+        for (RegistryObject object: Registry.getRegisteredFrom(Registries.COMMAND)) {
             if (object instanceof Command command)
                 if (event.getName().equals(command.getCommand()))
                     command.execute(event);
         }
-
-        /*switch (event.getName()) {
-            case "ping" -> new PingCommand().execute(event);
-            // TODO: 2023-02-23 Add other commands
-        }*/
     }
 }

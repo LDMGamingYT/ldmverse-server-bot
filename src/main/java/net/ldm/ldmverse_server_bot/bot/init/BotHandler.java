@@ -32,7 +32,6 @@ public class BotHandler {
                 .build();
     }
 
-    // TODO: 2023-02-23 This doesn't work. Fix it. (it seems to be a registration issue, good luck dumbass) 
     private static void registerCommands(JDA bot) {
         bot.updateCommands().addCommands(
                 Commands.slash("ping", "Ping? Pong!"),
@@ -51,7 +50,7 @@ public class BotHandler {
     }
 
     public static void start() {
-        //new BotRegistry().initialize();
+        new BotRegistry().initialize();
         JDA bot = create();
         registerCommands(bot);
     }
