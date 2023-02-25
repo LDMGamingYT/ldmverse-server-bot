@@ -15,7 +15,7 @@ public class FileUtils {
     private static final Logger LOG = LoggerContext.getContext().getLogger(FileUtils.class);
 
     public static String read(String path) throws FileNotFoundException {
-        LOG.info("Reading file: {}", path);
+        LOG.trace("Reading file: {}", path);
         StringBuilder content = new StringBuilder();
         try (Scanner scanner = new Scanner(new File(path))) {
             while (scanner.hasNextLine()) {
@@ -35,7 +35,7 @@ public class FileUtils {
 
     public static boolean create(String fileName) throws IOException {
         File file = new File(fileName);
-        LOG.info("File created: {}", file.getName());
+        LOG.trace("File created: {}", file.getName());
         return file.createNewFile();
     }
 
@@ -44,7 +44,7 @@ public class FileUtils {
             FileWriter writer = new FileWriter(fileName);
             writer.write(content);
             writer.close();
-            LOG.info("Writen to file: {}", fileName);
+            LOG.trace("Writen to file: {}", fileName);
             return true;
         } catch (IOException e) {
             LOG.error("An unknown error occurred while writing to " + fileName, e);
@@ -61,8 +61,4 @@ public class FileUtils {
         }
     }
 
-    public static void createIfAbsent(String fileName) throws IOException {
-        create(fileName);
-        if (fileName.endsWith(".json")) write(fileName, "{}");
-    }
 }
