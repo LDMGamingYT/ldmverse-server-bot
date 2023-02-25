@@ -44,3 +44,4 @@ bin/
 /bot.json
 /logs/
 /crash-reports/
+/run/
