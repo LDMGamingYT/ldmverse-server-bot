@@ -9,6 +9,6 @@ public class MessageListener extends ListenerAdapter {
     public void onMessageReceived(MessageReceivedEvent event) {
         if (event.getAuthor().equals(BotHandler.bot.getSelfUser())) return;
         LevelHandler.incrementLevelOf(event.getAuthor().getId());
-        event.getMessage().reply("you leveled up or something and the level is like "+LevelHandler.getLevelOf(event.getAuthor().getId())).queue();
+        event.getMessage().reply("you leveled up or something and the level is like "+LevelHandler.getStatsOf(event.getAuthor().getId())).queue();
     }
 }
