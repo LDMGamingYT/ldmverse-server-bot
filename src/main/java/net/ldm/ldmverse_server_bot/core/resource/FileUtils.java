@@ -22,7 +22,7 @@ public class FileUtils {
                 content.append(scanner.nextLine());
             }
         } catch (FileNotFoundException e) {
-            LOG.error("Failed to read {}", e.getMessage());
+            LOG.error("Failed to read "+path, e);
             throw new RuntimeException(e);
         }
         if (content.isEmpty()) throw new FileNotFoundException(path);
@@ -47,7 +47,7 @@ public class FileUtils {
             LOG.info("Writen to file: {}", fileName);
             return true;
         } catch (IOException e) {
-            LOG.error("An error has occurred: {}", e.getMessage());
+            LOG.error("An unknown error occurred while writing to " + fileName, e);
             return false;
         }
     }
