@@ -2,7 +2,7 @@ package net.ldm.ldmverse_server_bot.bot.event;
 
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import net.ldm.ldmverse_server_bot.resource.FileUtils;
+import net.ldm.ldmverse_server_bot.core.resource.FileUtils;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.LoggerContext;
 

@@ -1,4 +1,4 @@
-package net.ldm.ldmverse_server_bot.registry;
+package net.ldm.ldmverse_server_bot.core.registry;
 
 import java.util.ArrayList;
 import java.util.HashMap;

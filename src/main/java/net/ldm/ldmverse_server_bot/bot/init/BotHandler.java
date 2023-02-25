@@ -2,12 +2,7 @@ package net.ldm.ldmverse_server_bot.bot.init;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
-import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Activity;
-import net.dv8tion.jda.api.interactions.commands.DefaultMemberPermissions;
-import net.dv8tion.jda.api.interactions.commands.OptionType;
-import net.dv8tion.jda.api.interactions.commands.build.Commands;
-import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
 import net.ldm.ldmverse_server_bot.bot.event.MessageListener;
@@ -20,10 +15,10 @@ import static net.ldm.ldmverse_server_bot.Main.BOT_CONFIG;
 public class BotHandler {
     private static final Logger LOG = LoggerContext.getContext().getLogger(BotHandler.class);
     public static final String FORUM_ID = "1078078469377884220";
-    private static JDA bot;
+    public static JDA bot;
 
     private static JDA create() {
-        LOG.info("Starting bot!");
+        LOG.info("Creating new bot session");
         return JDABuilder.createDefault(BOT_CONFIG.token)
                 .disableCache(CacheFlag.MEMBER_OVERRIDES, CacheFlag.VOICE_STATE)
                 .disableIntents(GatewayIntent.GUILD_PRESENCES, GatewayIntent.GUILD_MESSAGE_TYPING)
@@ -34,31 +29,12 @@ public class BotHandler {
                 .build();
     }
 
-    private static void registerCommands(JDA bot) {
-        bot.updateCommands().addCommands(
-                Commands.slash("ping", "Ping? Pong!"),
-                Commands.slash("suggestion", "Set the status of a suggestion.")
-                        .setDefaultPermissions(DefaultMemberPermissions.enabledFor(Permission.ADMINISTRATOR))
-                        .setGuildOnly(true)
-                        .addOptions(new OptionData(OptionType.STRING, "status", "The status of the suggestion", true)
-                                .addChoice("approve", "approve")
-                                .addChoice("deny", "deny")
-                                .addChoice("consider", "consider")
-                                .addChoice("implement", "implement")),
-                Commands.slash("setlevel", "Sets a user's level")
-                        .addOption(OptionType.INTEGER, "level", "The new level", true)
-                // TODO: 2023-02-23 Add commands from 'Sapphire' bot
-        ).queue();
-        LOG.info("Registered {} commands", bot.retrieveCommands().complete().size());
-    }
+
 
     public static void start() {
+        LOG.info("Starting bot, preparing to initialize registry");
         new BotRegistry().initialize();
         bot = create();
-        registerCommands(bot);
-    }
-
-    public static JDA getBot() {
-        return bot;
+        //registerCommands(bot);
     }
 }

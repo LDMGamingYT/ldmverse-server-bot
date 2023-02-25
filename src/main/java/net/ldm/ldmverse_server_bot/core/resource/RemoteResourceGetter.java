@@ -1,4 +1,4 @@
-package net.ldm.ldmverse_server_bot.resource;
+package net.ldm.ldmverse_server_bot.core.resource;
 
 public class RemoteResourceGetter {
     private static final String GITHUB_RESOURCES_PATH = "https://github.com/LDMGamingYT/ldmverse-server-bot/blob/master/src/main/resources/%s?raw=true";

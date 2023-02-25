@@ -4,7 +4,7 @@ import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEve
 
 public class PingCommand extends Command {
     public PingCommand() {
-        super("ping");
+        super("ping", "Ping? Pong!");
     }
 
     @Override

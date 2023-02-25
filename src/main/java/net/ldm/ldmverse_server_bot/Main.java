@@ -2,7 +2,7 @@ package net.ldm.ldmverse_server_bot;
 
 import net.ldm.ldmverse_server_bot.bot.init.BotHandler;
 import net.ldm.ldmverse_server_bot.bot.json.BotConfig;
-import net.ldm.ldmverse_server_bot.resource.FileUtils;
+import net.ldm.ldmverse_server_bot.core.resource.FileUtils;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.LoggerContext;
 
@@ -15,6 +15,8 @@ public class Main {
 
     public static void main(String[] args) {
         LOG.info("Starting application");
+
+        Thread.setDefaultUncaughtExceptionHandler();
 
         try {
             BOT_CONFIG = FileUtils.readJson("bot.json", BotConfig.class);

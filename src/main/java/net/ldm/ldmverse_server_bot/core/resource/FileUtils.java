@@ -1,4 +1,4 @@
-package net.ldm.ldmverse_server_bot.resource;
+package net.ldm.ldmverse_server_bot.core.resource;
 
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;

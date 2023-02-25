@@ -11,7 +11,7 @@ public class MessageListener extends ListenerAdapter {
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
-        if (event.getAuthor().equals(BotHandler.getBot().getSelfUser())) return;
+        if (event.getAuthor().equals(BotHandler.bot.getSelfUser())) return;
         event.getMessage().reply("you leveled up or something and the level is like "+LevelHandler.getLevelOf(event.getAuthor().getId())).queue();
     }
 }

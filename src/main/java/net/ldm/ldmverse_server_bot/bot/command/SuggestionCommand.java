@@ -1,8 +1,11 @@
 package net.ldm.ldmverse_server_bot.bot.command;
 
+import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
+import net.dv8tion.jda.api.interactions.commands.OptionType;
+import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 import net.ldm.ldmverse_server_bot.bot.init.BotHandler;
-import net.ldm.ldmverse_server_bot.resource.RemoteResourceGetter;
+import net.ldm.ldmverse_server_bot.core.resource.RemoteResourceGetter;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.LoggerContext;
 
@@ -11,7 +14,13 @@ import java.util.Objects;
 public class SuggestionCommand extends Command {
     private static final Logger LOG = LoggerContext.getContext().getLogger(SuggestionCommand.class);
     public SuggestionCommand() {
-        super("suggestion");
+        super("suggestion", "Set the status of a suggestion", true, new Permission[]{Permission.ADMINISTRATOR}, new OptionData[]{
+                new OptionData(OptionType.STRING, "status", "The new status", true)
+                        .addChoice("approve", "approve")
+                        .addChoice("deny", "deny")
+                        .addChoice("consider", "consider")
+                        .addChoice("implement", "implement")
+        });
     }
 
     @Override
