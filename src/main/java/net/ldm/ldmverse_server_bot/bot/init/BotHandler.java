@@ -29,12 +29,10 @@ public class BotHandler {
                 .build();
     }
 
-
-
     public static void start() {
         LOG.info("Starting bot, preparing to initialize registry");
-        new BotRegistry().initialize();
         bot = create();
+        new BotRegistry().initialize();
         //registerCommands(bot);
     }
 }

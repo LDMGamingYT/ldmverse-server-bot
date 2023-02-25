@@ -13,10 +13,11 @@ public class BotRegistry extends BotInitializer {
     private static final Logger LOG = LoggerContext.getContext().getLogger(BotRegistry.class);
     @Override
     public void initialize() {
-        super.initialize();
         LOG.info("Registering items");
         Registry.register(Registries.COMMAND, new PingCommand());
         Registry.register(Registries.COMMAND, new SuggestionCommand());
         Registry.register(Registries.COMMAND, new SetLevelCommand());
+
+        super.initialize();
     }
 }
