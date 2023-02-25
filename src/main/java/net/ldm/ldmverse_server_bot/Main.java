@@ -1,7 +1,7 @@
 package net.ldm.ldmverse_server_bot;
 
 import net.ldm.ldmverse_server_bot.bot.init.BotHandler;
-import net.ldm.ldmverse_server_bot.bot.json.BotConfig;
+import net.ldm.ldmverse_server_bot.json.BotConfig;
 import net.ldm.ldmverse_server_bot.core.crash.LoggerExceptionHandler;
 import net.ldm.ldmverse_server_bot.core.resource.FileUtils;
 import org.apache.logging.log4j.Logger;
