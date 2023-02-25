@@ -43,3 +43,4 @@ bin/
 /.idea/
 /bot.json
 /logs/
+/crash-reports/
