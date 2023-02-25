@@ -4,10 +4,10 @@
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout disableAnsi="false" pattern="%style{[%d{HH:mm:ss}]}{bright_blue} %highlight{[%t/%level]}{FATAL=red, ERROR=red, WARN=yellow, INFO=green, DEBUG=green, TRACE=blue} %style{(%c{0})}{cyan} %highlight{%msg}{FATAL=red, ERROR=red, WARN=default, INFO=default, DEBUG=default, TRACE=default}%n"/>
         </Console>
-        <File name="LatestLog" fileName="logs/latest.log" append="false">
+        <File name="LatestLog" fileName="run/logs/latest.log" append="false">
             <PatternLayout pattern="[%d{HH:mm:ss}] [%t/%level] (%c{1}) %msg%n"/>
         </File>
-        <File name="HistoryLog" fileName="logs/history.log" append="true">
+        <File name="HistoryLog" fileName="run/logs/history.log" append="true">
             <PatternLayout pattern="[%d{MM/dd/yy HH:mm:ss}] [%t/%level] (%c{1}) %msg%n"/>
         </File>
     </Appenders>

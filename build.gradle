@@ -25,7 +25,12 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
 
-
+jar {
+    manifest {
+        attributes 'Main-Class': 'net.ldm.ldmverse_server_bot.Main',
+                'Class-Path': configurations.runtimeClasspath.collect { it.name }.join(' ')
+    }
+}
 
 test {
     useJUnitPlatform()
