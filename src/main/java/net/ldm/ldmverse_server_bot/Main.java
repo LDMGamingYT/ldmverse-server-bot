@@ -2,7 +2,7 @@ package net.ldm.ldmverse_server_bot;
 
 import net.ldm.ldmverse_server_bot.bot.init.BotHandler;
 import net.ldm.ldmverse_server_bot.bot.json.BotConfig;
-import net.ldm.ldmverse_server_bot.core.crash.CrashExceptionHandler;
+import net.ldm.ldmverse_server_bot.core.crash.LoggerExceptionHandler;
 import net.ldm.ldmverse_server_bot.core.resource.FileUtils;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.LoggerContext;
@@ -13,12 +13,11 @@ public class Main {
     public static BotConfig BOT_CONFIG;
     private static final Scanner IN = new Scanner(System.in);
     private static final Logger LOG = LoggerContext.getContext().getLogger(Main.class);
-    public static final String TITLE = "The LDMVerse's Dedicated Bot";
 
     public static void main(String[] args) {
         LOG.info("Starting application");
 
-        Thread.setDefaultUncaughtExceptionHandler(new CrashExceptionHandler());
+        Thread.setDefaultUncaughtExceptionHandler(new LoggerExceptionHandler());
 
         try {
             BOT_CONFIG = FileUtils.readJson("bot.json", BotConfig.class);
