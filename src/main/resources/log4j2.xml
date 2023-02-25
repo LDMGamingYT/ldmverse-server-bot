@@ -8,7 +8,7 @@
             <PatternLayout pattern="[%d{HH:mm:ss}] [%t/%level] (%c{1}) %msg%n"/>
         </File>
         <File name="HistoryLog" fileName="logs/history.log" append="true">
-            <PatternLayout pattern="[%d{HH:mm:ss}] [%t/%level] (%c{1}) %msg%n"/>
+            <PatternLayout pattern="[%d{MM/dd/yy HH:mm:ss}] [%t/%level] (%c{1}) %msg%n"/>
         </File>
     </Appenders>
     <Loggers>
