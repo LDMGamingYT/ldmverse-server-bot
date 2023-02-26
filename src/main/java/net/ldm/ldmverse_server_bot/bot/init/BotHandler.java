@@ -5,6 +5,7 @@ import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
+import net.ldm.ldmverse_server_bot.Main;
 import net.ldm.ldmverse_server_bot.bot.event.MessageListener;
 import net.ldm.ldmverse_server_bot.bot.event.SlashCommands;
 import org.apache.logging.log4j.Logger;
@@ -32,7 +33,6 @@ public class BotHandler {
     public static void start() {
         LOG.info("Starting bot, preparing to initialize registry");
         bot = create();
-        new BotRegistry().initialize();
-        //registerCommands(bot);
+        Main.REGISTRY.initialize();
     }
 }

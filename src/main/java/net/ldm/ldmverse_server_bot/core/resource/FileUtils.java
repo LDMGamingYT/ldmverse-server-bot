@@ -33,10 +33,14 @@ public class FileUtils {
         return new GsonBuilder().create().fromJson(read(path), type);
     }
 
-    public static boolean create(String fileName) throws IOException {
+    public static void create(String fileName) throws IOException {
         File file = new File(fileName);
+
+        if (!file.getParentFile().exists())
+            file.getParentFile().mkdirs();
+
         LOG.trace("File created: {}", file.getName());
-        return file.createNewFile();
+        file.createNewFile();
     }
 
     public static boolean write(String fileName, String content) {
@@ -54,7 +58,7 @@ public class FileUtils {
 
     public static boolean saveJson(String fileName, Object content) {
         try {
-            if (!create(fileName)) System.out.println();
+            create(fileName);
             return write(fileName, new GsonBuilder().create().toJson(content));
         } catch (IOException e) {
             throw new RuntimeException(e);
